@@ -14,12 +14,11 @@ function App() {
         <button
           onClick={() => {
             setPeople((prevState) => {
-              let newState = prevState.map((el) => {
-                el.age += 1;
-                return el;
-              });
-              newState = newState.filter((person) => person.age > 30);
-              return newState;
+              return prevState
+                .map((person) => {
+                  return { ...person, age: person.age - 1 };
+                })
+                .filter((person) => person.age > 30);
             });
           }}
         >

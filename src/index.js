@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./exes/birthday-reminder-src/index.css"; // importing the css
-import App from "./exes/birthday-reminder-src/App"; // importing the app js
+
+// import App from "./workOut/app";
+import "./exes/6-tabs/setup/index.css"; // importing the css
+import App from "./exes/6-tabs/setup/App"; // importing the app js
 
 ReactDOM.render(
   <React.StrictMode>
