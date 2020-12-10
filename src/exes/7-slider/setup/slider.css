@@ -1,0 +1,44 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.slider-container {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.people {
+  overflow: hidden;
+}
+.person {
+  opacity: 1;
+  transition: all 200ms ease;
+  text-align: center;
+}
+.trans {
+  /* animation-duration: 100ms;
+  animation-timing-function: ease;
+  animation-name: personTrans; */
+  animation: personTrans 100ms ease;
+}
+
+@keyframes personTrans {
+  0% {
+    opacity: 0;
+    transform: translate(100%);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translate(50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
