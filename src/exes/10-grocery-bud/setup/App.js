@@ -19,7 +19,7 @@ function App() {
   const inputRef = useRef(null);
 
   const showAlert = (show = false, msg = "", type = "") => {
-    setAlert({ show, msg, type });
+    setAlert({ ...alert, show, msg, type });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,13 +50,11 @@ function App() {
     }
   };
   const editItem = (itemId) => {
-    // isEditing is true here
-    // get item name with the id from list
     const editingName = list.find((el) => el.id === itemId).title;
     setIsEditing(true);
     setName(editingName);
     setEditId(itemId);
-    showAlert(true, `editing ${editingName}`, "edit");
+    // showAlert(true, `editing ${editingName}`, "edit");
     inputRef.current.focus();
   };
   const deleteItem = (itemId) => {
@@ -72,12 +70,19 @@ function App() {
   };
   useEffect(() => {
     window.localStorage.setItem("list", JSON.stringify(list));
-  });
+  }, [list]);
 
   return (
     <section className="section-center">
       <form action="" className="grocery-form" onSubmit={handleSubmit}>
-        {alert.show && <Alert {...alert} removeAlert={showAlert} list={list} />}
+        {alert.show && (
+          <Alert
+            {...alert}
+            setAlert={setAlert}
+            removeAlert={showAlert}
+            list={list}
+          />
+        )}
         <h3>grocery bud</h3>
         <div className="form-control">
           <input
