@@ -1,12 +1,32 @@
-import React from 'react'
-import { useGlobalContext } from '../context'
+import React from "react";
+import { useGlobalContext } from "../context";
 
 const SearchForm = () => {
-  return (
-    <div>
-      <h2>search form component</h2>
-    </div>
-  )
-}
+  const { setSearchTerm } = useGlobalContext();
+  const searchValue = React.useRef("");
+  const [refValue, setRefValue] = React.useState("");
+  React.useEffect(() => {
+    console.log(refValue);
+  }, [refValue]);
 
-export default SearchForm
+  return (
+    <section className="section search">
+      <form className="search-form">
+        <div className="form-control">
+          <label htmlFor="name">search your favourite cocktail</label>
+          <input
+            type="text"
+            id="name"
+            value={refValue}
+            ref={searchValue}
+            onChange={() => {
+              setRefValue(searchValue.current.value);
+            }}
+          />
+        </div>
+      </form>
+    </section>
+  );
+};
+
+export default SearchForm;
