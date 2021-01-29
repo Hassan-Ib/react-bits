@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import { useCallback } from "react";
 import reducer from "./reducer";
 
@@ -22,12 +22,11 @@ const AppProvider = ({ children }) => {
   const setCocktails = (value) => {
     dispatch({ type: "COCKTAILS", payload: { cocktails: value } });
   };
-
-  const fetchDrinks = async () => {
+  const fetchDrinks = useCallback(async () => {
     setIsLoading(true);
     try {
-      const { searchTerms } = state;
-      const response = await fetch(`${url}${searchTerms}`);
+      const id = state.searchTerms;
+      const response = await fetch(`${url}${id}`);
       const data = await response.json();
       const { drinks } = data;
       if (drinks) {
@@ -56,10 +55,11 @@ const AppProvider = ({ children }) => {
       console.log(error);
       setIsLoading(false);
     }
-  };
+  }, [state.searchTerms]);
+
   useEffect(() => {
     fetchDrinks();
-  }, [state.searchTerms]);
+  }, [fetchDrinks]);
   return (
     <AppContext.Provider
       value={{
