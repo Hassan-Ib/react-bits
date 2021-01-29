@@ -57,11 +57,9 @@ const AppProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
-  console.log(state);
-
   useEffect(() => {
     fetchDrinks();
-  }, []);
+  }, [state.searchTerms]);
   return (
     <AppContext.Provider
       value={{

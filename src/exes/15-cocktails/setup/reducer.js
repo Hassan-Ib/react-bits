@@ -1,6 +1,5 @@
 const reducer = (state, action) => {
   if (action.type === "LOADING") {
-    console.log("loading : " + state.isLoading + action.payload.isLoading);
     const { isLoading } = action.payload;
     const newState = {
       ...state,
